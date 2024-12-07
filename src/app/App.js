@@ -1,8 +1,12 @@
 import { Component } from 'react'
 import { TodoPage } from '../pages/TodoPage/TodoPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Layout } from '../pages/Layout';
+import { Layout } from '../pages/Layout/Layout';
 import { AppContext } from './context';
+import { HelloPage } from '../pages/Hello'
+import { UserGreeting } from '../pages/UserGreeting'
+import { Counter } from '../pages/Counter'
+import { Main } from '../pages/MainPage/Main'
 
 // Создание роутера приложения, который в зависимости от url отрисовывает
 // определенную компоненту
@@ -20,7 +24,7 @@ const router = createBrowserRouter([
                 // Это свойство позволяет задать элемент по умолчанию для родительского роута
                 // То есть, если в адресной строке url будет "/", то отрисуется этот element
                 index: true,
-                element: <h1>Главная страница</h1>
+                element: <Main />
             },
             {
                 path: '/login',
@@ -34,6 +38,18 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <h1>Регистрация</h1>
+            },
+            {
+                path: '/hello',
+                element: <HelloPage />
+            },
+            {
+                path: '/greeting',
+                element: <UserGreeting />
+            },
+            {
+                path: '/counter',
+                element: <Counter></Counter>
             }
         ]
     },
@@ -66,7 +82,7 @@ export class App extends Component {
             // Видеоролик по React Context: https://www.youtube.com/watch?v=W_-TO_reSGs
             // В этом ролике автор показывает синтаксис работы с контекстом для функциональных компонент. В целом можете использовать пример,
             // который рассматривали на семинар, но так же можете воспользоваться примером из урока
-           <AppContext.Provider value={{
+            <AppContext.Provider value={{
                 user: this.state.user,
                 login: this.#login.bind(this),
                 logout: this.#logout.bind(this)
@@ -74,7 +90,7 @@ export class App extends Component {
                 {/* // Компонента провайдинга роутера. Ее использование важно для работы маршрутизации приложения
                 // Чтобы роутер заработал, ему необходмо передатать объект конфигурации роутера в качестве пропса */}
                 <RouterProvider router={router} />
-           </AppContext.Provider>
+            </AppContext.Provider>
         );
     }
 
