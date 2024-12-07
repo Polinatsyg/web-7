@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import { Outlet } from 'react-router';
-import { AppContext } from '../app/context';
+import { AppContext } from '../../app/context';
 import { Link } from 'react-router-dom';
 
+
+import './style.css'
 // Файл, описывающий лэйаут приложения
 export class Layout extends Component {
     // Подключение к контексту, который внедрен в приложение компонентой верхнего уровня
@@ -11,19 +13,11 @@ export class Layout extends Component {
     render() {
         return (
             <div className='layout'>
-                <div className='navigator'
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        padding: '20px 10px',
-                        color: 'white',
-                        backgroundColor: 'black'
-                    }}>
+                <div className='navigator'>
                     <div className='logo'>
-                        Логотип
+                        <Link to="/">Логотип</Link>
                     </div>
                     <div className='actions'>
-                        {/* // Читаем значение из контекста и делаем условную отрисовку */}
                         {this.context.user !== undefined && (
                             <>
                                 {/*
